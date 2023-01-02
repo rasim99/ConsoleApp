@@ -12,27 +12,76 @@ namespace DataAcces.Repositories
     {
         public bool Create(Employee entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                AppDbContext.Employees.Add(entity);
+                return true;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public bool Delete(Employee entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                AppDbContext.Employees.Remove(entity);
+                return true;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public Employee Get(Predicate<Employee> filters = null)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return filters != null ? AppDbContext.Employees.Find(filters) : AppDbContext.Employees[0];
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public List<Employee> GetAll(Predicate<Employee> filters = null)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return filters != null ? AppDbContext.Employees.FindAll(filters) : AppDbContext.Employees;
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public bool Update(Employee entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Employee exisEmlpoye = Get(empl => empl.Id == entity.Id);
+                if (exisEmlpoye!=null)
+                {
+                    exisEmlpoye = entity;
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }
