@@ -55,7 +55,8 @@ namespace DataAcces.Repositories
         {
             try
             {
-                return filters == null ? AppDbContext.Departments : AppDbContext.Departments.FindAll(filters);
+                //return filters == null ? AppDbContext.Departments : AppDbContext.Departments.FindAll(filters);
+                return filters != null ? AppDbContext.Departments.FindAll(filters) : AppDbContext.Departments;
             }
             catch (Exception)
             {
@@ -70,7 +71,7 @@ namespace DataAcces.Repositories
         {
             try
             {
-                Department exisDepartment = Get(d => d.Id == entity.Id);
+                Department exisDepartment = Get(dep => dep.Id == entity.Id);
                 if (exisDepartment != null)
                 {
                     exisDepartment = entity;

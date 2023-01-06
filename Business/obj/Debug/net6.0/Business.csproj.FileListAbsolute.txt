@@ -13,3 +13,5 @@ C:\Users\ASUS\Desktop\Company\Business\obj\Debug\net6.0\Business.dll
 C:\Users\ASUS\Desktop\Company\Business\obj\Debug\net6.0\refint\Business.dll
 C:\Users\ASUS\Desktop\Company\Business\obj\Debug\net6.0\Business.pdb
 C:\Users\ASUS\Desktop\Company\Business\obj\Debug\net6.0\ref\Business.dll
+C:\Users\ASUS\Desktop\Company\Business\bin\Debug\net6.0\DataAcces.dll
+C:\Users\ASUS\Desktop\Company\Business\bin\Debug\net6.0\DataAcces.pdb

@@ -1,8 +1,21 @@
 {
   "version": 2,
-  "dgSpecHash": "7pE4Zn0R6+5dyLrsZU0e4qysx24Xxgzr4glbXrCvQPmrp4R+fquwA/0NMU5OwT06mldYQuetYl1zyoEuXETWnA==",
+  "dgSpecHash": "CT5cwabYUlibsQ5T6pzrtqdhyr6ExaqX2HrvaO3wS3vx17ITHfqtjAGFsK1U05IZZA0SadSIiZblprmfd7jAdg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ASUS\\Desktop\\Company\\Company\\Company.csproj",
-  "expectedPackageFiles": [],
-  "logs": []
+  "projectFilePath": "C:\\Users\\ASUS\\Desktop\\Company\\Company\\ACompany.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\ASUS\\.nuget\\packages\\entityframework\\5.0.0\\entityframework.5.0.0.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'EntityFramework 5.0.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
+      "libraryId": "EntityFramework",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    }
+  ]
 }

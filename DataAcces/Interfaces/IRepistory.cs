@@ -14,7 +14,5 @@ namespace DataAcces.Interfaces
         bool Delete (T entity);
         T Get (Predicate   <T>filters=null);
        List < T> GetAll(Predicate<T>filters=null);
-
-
     }
 }

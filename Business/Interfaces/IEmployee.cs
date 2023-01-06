@@ -9,12 +9,13 @@ namespace Business.Interfaces
 {
     public interface IEmployee
     {
-        Employee Create(Employee employee);
-         Employee Update(int id ,Employee employee);
+        Employee Create(Employee employee, string departmentName);
+        Employee Update(int id, Employee employee, string departmentName);
         Employee Delete(int id);
         Employee Get(int id);
         List<Employee> GetAll(string name);
+        List<Employee> Searchbydepartmen(string departmentName);
         List<Employee> GetAll();
-        
+
     }
 }

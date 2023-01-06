@@ -82,6 +82,11 @@ namespace Business.Services
             Department exisDepartment = departmentRepistory.Get(d => d.Id == id);
             return exisDepartment;
         }
+        public Department Get(string name)
+        {
+            Department exDepart = departmentRepistory.Get(d => d.Name.ToLower() == name.ToLower());
+            return exDepart == null ? null : exDepart;
+        }
 
         public List<Department> GetAll(int capasity)
         {
