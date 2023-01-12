@@ -1,5 +1,6 @@
 ﻿using Business.Interfaces;
 using Business.Services;
+using DataAcces.Repositories;
 using Entities.Models;
 using System;
 using System.Collections.Generic;
@@ -13,21 +14,26 @@ namespace ACompany.Controllers
 
     public class EmployeeController
     {
+        private readonly DepartmentRepistory departmentRepistory;
         private readonly EmployeeService employeeService;
+        private readonly DepartmentServices departmentService;
         public EmployeeController()
         {
+            departmentRepistory = new DepartmentRepistory();
             employeeService = new EmployeeService();
+            departmentService = new DepartmentServices();
+
         }
-        public void CreateEmployee()
+    public void CreateEmployee()
         {
 
-            Helper.HelperMessage(ConsoleColor.White, "Please  enter Employee's name!");
+            exEmple: Helper.HelperMessage(ConsoleColor.White, "Please  enter Employee's name!");
 
             string EmployeeName = Console.ReadLine();
             Helper.HelperMessage(ConsoleColor.White, "Please  enter Employee's Surname!");
             string EmployeeSurname = Console.ReadLine();
          Helper.HelperMessage(ConsoleColor.Blue, "Please  enter Age");
-           exiAge: int Age = int.Parse(Console.ReadLine());
+            int Age = int.Parse(Console.ReadLine());
             Helper.HelperMessage(ConsoleColor.Blue, "Please  Department Name");
             string departmentName = Console.ReadLine();
             Helper.HelperMessage(ConsoleColor.White, "Please  enter Employee's  Adress");
@@ -46,13 +52,18 @@ namespace ACompany.Controllers
             else
             {
                 Helper.HelperMessage(ConsoleColor.Red, $"Dont Create the Employe");
-                goto exiAge;
+                goto exEmple;
             }
         }
         public void UpdateEmployee()
         {
+            Helper.HelperMessage(ConsoleColor.DarkCyan, " Enter Employee's ID");
             int ID = int.Parse(Console.ReadLine());
+
+            Helper.HelperMessage(ConsoleColor.DarkCyan, " Enter Employee's Adress");
             string adres = Console.ReadLine();
+
+            Helper.HelperMessage(ConsoleColor.DarkCyan, " Enter Employee's Department Name");
             string deprName = Console.ReadLine();
             Employee emplo = employeeService.Update(ID, new Employee {  Adress = adres },deprName);
             if (emplo !=null)
@@ -94,15 +105,26 @@ namespace ACompany.Controllers
         }
         public void Searchbydepartmen()
         {
-            string departmentName = Console.ReadLine();
-            Helper.HelperMessage(ConsoleColor.Magenta, "List Of Employee");
-            foreach (var item in employeeService.GetAll(departmentName))
+          
+           exname: Helper.HelperMessage(ConsoleColor.Magenta, "enter departmen");
+
+            string? departmentName = Console.ReadLine();
+            Department exdep = departmentRepistory.Get(d => d.Name.ToLower() == departmentName.ToLower());
+            if (employeeService.Searchbydepartmen(exdep.Name) != null)
             {
-                Helper.HelperMessage(ConsoleColor.DarkMagenta, $"{item.Id} {item.Name}   {item.Surname}  {item.Adress}  {item.department}  {item.Age}");
+                // Helper.HelperMessage(ConsoleColor.DarkMagenta, $"{exdep.Id} {exdep.Name} ");
+                 foreach (var item in employeeService.Searchbydepartmen(exdep.Name))
+                {
+                     Helper.HelperMessage(ConsoleColor.DarkMagenta, $"{item.Id} {item.Name} {item.Surname}  ");
 
+                }
+                return;
             }
-
-
+            else
+            {
+                Helper.HelperMessage(ConsoleColor.Red, "Department name Doesnt empty ");
+                goto exname;
+            }
         }
         public void GetByIdEmployee()
         {
@@ -135,13 +157,25 @@ namespace ACompany.Controllers
         }
         public void GetAllByName()
         {
-            string name=Console.ReadLine();
-            foreach (var item in employeeService.GetAll(name) )
-            {
-                Helper.HelperMessage(ConsoleColor.DarkGreen, $"{item.Name} {item.Surname} {item.Adress} {item.Age}");
+            exEmple: Helper.HelperMessage(ConsoleColor.Gray, $"enter Employee' name which of see");
 
+            string name =Console.ReadLine();
+            if (name != null)
+            {
+                foreach (var item in employeeService.GetAll(name))
+                {
+                    Helper.HelperMessage(ConsoleColor.DarkGreen, $"{item.Name} {item.Surname} {item.Adress} {item.Age}");
+
+                }
+                 
+               // Helper.HelperMessage(ConsoleColor.Red, $"have not with name on Employee ");
             }
-            Helper.HelperMessage(ConsoleColor.DarkGreen, $"have not with name on Employee ");
+            else
+            {
+               Helper.HelperMessage(ConsoleColor.Red, $"must not empty Employee's name ");
+               goto exEmple;
+            }
+
 
         }
         public void GetAllEmployee()

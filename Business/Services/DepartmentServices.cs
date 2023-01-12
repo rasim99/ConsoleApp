@@ -123,6 +123,9 @@ namespace Business.Services
                 Department exDepartment = departmentRepistory.Get(d => d.Id == id);
                 if (exDepartment!=null)
                 {
+                    exDepartment.Capasity = department.Capasity == exDepartment.Capasity || department.Capasity == 0 ? exDepartment.Capasity : department.Capasity;
+                    exDepartment.Name = department.Name == "" ? exDepartment.Name : department.Name;
+                    
                     departmentRepistory.Update(exDepartment);
                     return exDepartment;
                 }

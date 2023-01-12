@@ -21,7 +21,7 @@ while (whileResult)
     int Button;
     bool result = int.TryParse(ChooseOnebyMenu, out Button);
 
-    if (result && Button<15 && Button >0)
+    if (result && Button<16 && Button >0)
     {
         switch (Button)
         {

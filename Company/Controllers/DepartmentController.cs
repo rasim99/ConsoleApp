@@ -70,26 +70,18 @@ namespace ACompany.Controllers
         }
         public void UpdateDepartment()
         {
-        //Helper.HelperMessage(ConsoleColor.Cyan, "'enter name for udpate department");
-        //Department exd = departmentServices.Update(1, new Department { Name=Console.ReadLine(),Capasity=100});
-        //if (exd !=null)
-        //{
-        //    Console.WriteLine(exd.Name,exd.Capasity);
-        //}
-        //else
-        //{
-        //    Console.WriteLine("eror somthing");
-        //}
+            List<Department> Exdepartments = departmentServices.GetAll();
 
         CorrectId: Helper.HelperMessage(ConsoleColor.DarkGreen, "Choose  Department's Id for Update");
             int resId;
             string StrId = Console.ReadLine();
             bool isConvrt = int.TryParse(StrId, out resId);
-            Department dep = new Department();
+            //Department dep = new Department();
             if (isConvrt)
             {
-                Department exd = departmentServices.Update(resId, dep);
-                if (departmentServices.Update(resId, exd) != null)
+                //Department exd = departmentServices.Update(resId, dep);
+               // departmentServices.Update(resId, exd) != null
+                if (Exdepartments.Exists(e=>e.Id==resId))
                 {
                     Helper.HelperMessage(ConsoleColor.Yellow, "Choose  Department's Name for Update");
                     string departmentName = Console.ReadLine();
@@ -102,7 +94,12 @@ namespace ACompany.Controllers
                     department.Name = departmentName;
                     department.Capasity = DepCapasity;
                     Department newDepartment = departmentServices.Update(resId, department);
-                    Helper.HelperMessage(ConsoleColor.DarkYellow, $"Updated   {newDepartment.Name} {newDepartment.Capasity}");
+                    
+                    //Helper.HelperMessage(ConsoleColor.DarkYellow, $"Updated   {newDepartment.Name} {newDepartment.Capasity}");
+                    if (newDepartment!=null)
+                    {
+                        Helper.HelperMessage(ConsoleColor.DarkYellow, $"Updated   {newDepartment.Name} {newDepartment.Capasity}");
+                    }
 
                 }
                 else
@@ -201,10 +198,17 @@ namespace ACompany.Controllers
                 foreach (var item in departmentServices.GetAll(resCapasity) )
                 {
                 Helper.HelperMessage(ConsoleColor.DarkGreen, $"{item.Name}");
+               //if (item!=null)
+               //     {
+               //         Helper.HelperMessage(ConsoleColor.DarkGreen, $"{item.Name}");
+               //     }
+               //else
+               //     {
+               //            Helper.HelperMessage(ConsoleColor.DarkGreen, $"have not this capasity department");
+               //         goto CorrectCapasity;
+               //     }
                 }
-                Helper.HelperMessage(ConsoleColor.DarkGreen, $"1have not this capasity department");
-
-
+               Helper.HelperMessage(ConsoleColor.Red, $"have not this capasity department");
             }
             else
             {

@@ -54,6 +54,7 @@ namespace Business.Services
                 if (exsEmployee!=null)
                 {
                     Department department = departmentServices.Get(departmentName);
+                   
                      if (department!=null)
                     {
                         exsEmployee.department = department;
